@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,11 +56,23 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    private int on_button_click_enterValue()
+    {
+        TextView tv = this.findViewById(R.id.enteredText);
+        int number = Integer.parseInt(tv.getText().toString());
+        return number;
+
+    }
     public void on_button_click(View view){
 
         TextView tv = this.findViewById(R.id.numberTextView);
+        TextView congrats = this.findViewById(R.id.congratulations);
+        congrats.setText("");
         Random r = new Random();
-        int number = r.nextInt( 10);
+        int number = (r.nextInt(6 ) + 1);
         tv.setText(Integer.toString(number));
+        int enteredNumber = on_button_click_enterValue();
+        if (enteredNumber == number)
+            congrats.setText("Congratulations!");
     }
 }
